@@ -33,4 +33,11 @@
 5. Fatal error: Call to a member function bind_param() on boolean
     - A column is set to NULL without being declared so or with default value.
     - VALUES(?,?,?...) in the the PHP code might be lesser or greater than required.
-    
+
+6. Warning: mysqli_stmt::bind_param(): Number of variables doesn't match number of parameters in prepared statement
+  Causes:
+    - There might be single quotes around placeholders (i.e ?), which will turn out to be values not
+       placeholders any longer.
+  
+  Solution:
+    - Remove those single quotes.
