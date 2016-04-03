@@ -1,0 +1,32 @@
+1. The method driver /usr/lib/apt/methods/https could not be found. 
+    Cause:
+      - Existience of a repo with https:// int the /etc/apt/sources.list, but apt can't find  https program i.e:  /usr/lib/apt/methods/https .
+	e.g deb [arch=amd64,i386] https://apt.jenslody.de/stable jessie main
+      
+    Sol:
+      - rename the repo to deb https:// to http://
+      
+2. Installing specific version of a paackage
+	- Verify the version of installed package?
+	    a. $ apt-cache policy <package name>
+		    e.g apt-cache policy gcc
+			gcc:
+			Installed: 4:4.9.2-2
+			Candidate: 4:4.9.2-2
+			Version table:
+			*** 4:4.9.2-2 0
+				500 http://http.us.debian.org/debian/ jessie/main amd64 Packages
+				100 /var/lib/dpkg/status
+	    
+	    b. $ dpkg -l package-name 
+		    e.g dpkg -l gcc
+			    Desired=Unknown/Install/Remove/Purge/Hold
+			    | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+			    |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+			    ||/ Name                          Version             Architecture        Description
+			    +++-=============================-===================-===================-===============================================================
+			    ii  gcc                           4:4.9.2-2           amd64               GNU C compiler
+			
+	- apt-get install package=version
+	    e.g apt-get install gcc=4:4.9.2-2
+3.

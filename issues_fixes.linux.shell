@@ -1,0 +1,23 @@
+1. Remove files using find and rm
+	Find all files having .bak (*.bak) extension in the current directory and remove them:
+	    $ find . -type f -name "*.bak" -exec rm -f {} \;
+        
+        Find all core files in the / (root) directory and remove them (be careful with this command):
+	    # find / -name core -exec rm -f {} \;
+	    
+	Find all *.bak files in the current directory and removes them with confirmation from user:
+	    $ find . -type f -name "*.bak" -exec rm -i {} \;
+
+2. Best way to sync files - copy only EXISTING files and only if NEWER than target
+    - from http://unix.stackexchange.com/questions/117190/best-way-to-sync-files-copy-only-existing-files-and-only-if-newer-than-target
+	Using rsync to do this. The key observation would be in needing to use the --existing and --update switches.
+
+	    --existing              skip creating new files on receiver
+	    -u, --update            skip files that are newer on the receiver
+
+	A command like this would do it:
+	    rsync -avz --update --existing src/ dst
+    
+	-To make sure things work before you cut the command loose, I'd suggest using another of rsync's switches, --dry-run. Let's add another -v too so rsync's output is more verbose.
+	    rsync -avz --dry-run --update --existing src/ dst
+    

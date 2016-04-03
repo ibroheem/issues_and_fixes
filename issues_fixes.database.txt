@@ -1,14 +1,2 @@
-1. php.ini
-	# php -i | grep "Loaded Configuration File"
-		Loaded Configuration File => /etc/php5/cli/php.ini
-
-2. Max upload size error in CMS (such as wordpress)
-    sol: edit php.ini
-	    - upload_size
-
-3. Timeout during CMS installation
-     sol: edit php.ini
-	    - set max_execution_time = 30 to larger value  
-
-4. Mysql Password reset.
+1. Mysql Password reset.
     $ mysqladmin -u user oldpassword newpass

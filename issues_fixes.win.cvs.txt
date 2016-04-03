@@ -1,0 +1,22 @@
+1.GIT
+    - Create Repo
+        echo '# devs' >> README.md
+        git init --bare devs.git
+        git add README.md
+        git commit -m "devs"
+        git remote add origin-devs https://github.com/user/devs.git
+        git push -u origin-devs master
+		
+2. Deleting File(a), Directory(ies) in Repo
+  
+    Removes dir1 dir2 another-dir
+      git rm -r --cached dir1 dir2 another-dir
+    
+    Removes files1 file2 in current directory
+      git rm -r files1 file2
+       
+    Removes .h files in current directory
+      git rm -r *.h 
+    
+    git commit -m "Removed folder from repository"
+    git push origin master

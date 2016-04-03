@@ -1,0 +1,21 @@
+1. Qt5 overloaded Signals and Slots
+	Problem: &QComboBox::activated(int) and &QComboBox::activated(const QString &) conflicts
+		connect(combo_name, &QComboBox::activated, [&](int i){ load_lists(i) }));
+	
+	Solution: Choosing which one you want to pick by:
+		1. Using casts:
+		    connect(spinbox, static_cast<void (QComboBox::*)(int)>(&QComboBox::activated),
+        	slider, &QSlider::setValue);
+        	
+        2. from http://stackoverflow.com/questions/16794695/qt5-overloaded-signals-and-slots
+            template<typename... Args> struct SELECT 
+            { 
+                template<typename C, typename R> 
+                static constexpr auto OVERLOAD_OF( R (C::*pmf)(Args...) ) -> decltype(pmf) { 
+                    return pmf;
+                }
+            };
+        
+            Usage:
+            connect(spinbox, SELECT<int>::OVERLOAD_OF(&QSpinBox::valueChanged), ...)
+            

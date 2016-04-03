@@ -1,0 +1,17 @@
+1. Too Many Pattern Attempts!
+	
+    rm /data/system/gesture.key
+
+    Reboot your android device and now supply following commands
+
+    adb shell
+    cd /data/data/com.android.providers.setting­s/databases
+    a. jus' delete or rename the settings.db
+    	mv settings.db s.db
+
+    b. sqlite3 settings.db
+    update system set value=0 where name='lock_pattern_autolock';
+    update system set value=0 where name='lockscreen.lockedoutpermanently';
+    .quit
+
+    Restart your device.

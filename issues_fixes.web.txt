@@ -1,0 +1,36 @@
+1. php.ini
+	# php -i | grep "Loaded Configuration File"
+		Loaded Configuration File => /etc/php5/cli/php.ini
+
+2. Max upload size error in CMS (such as wordpress)
+    sol: edit php.ini
+	    - upload_size
+
+3. Timeout during CMS installation
+     sol: edit php.ini
+	    - set max_execution_time = 30 to larger value
+
+4. Set Include Path in PHP
+  
+    Example #1 set_include_path() example
+      <?php
+      // Works as of PHP 4.3.0
+      set_include_path('/usr/lib/pear');
+      
+      // Works in all PHP versions
+      ini_set('include_path', '/usr/lib/pear');
+      ?>
+    
+    Example #2 Adding to the include path
+    
+    Making use of the PATH_SEPARATOR constant, it is possible to extend the include path regardless of the operating system.
+    In this example we add /usr/lib/pear to the end of the existing include_path.
+      <?php
+      $path = '/usr/lib/pear';
+      set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+      ?>
+
+5. Fatal error: Call to a member function bind_param() on boolean
+    - A column is set to NULL without being declared so or with default value.
+    - VALUES(?,?,?...) in the the PHP code might be lesser or greater than required.
+    

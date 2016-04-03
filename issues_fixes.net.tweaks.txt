@@ -1,0 +1,64 @@
+ HOW TO USE SOFTETHER VPN FOR MTN BIS WITHOUT SIMPLE SERVER
+
+HI GUYS!
+Good to have your attention. we all know
+about softether vpn servers which cannot be
+edited.
+thanks to my very good friend from Singapore
+who happened to create a server which i
+eventually tweaked and got this recent
+discovery. i can vouch for the fact that it
+works flawless so far as you are on a 3G
+network area. Anyways today is my birthday
+and i wish use this time out to tell the house
+in person. lol!
+
+Here we Go!
+
+install SoftEther Client on your
+computer.
+http://www.softether-
+download.com/
+
+After you’re done installing, setup a new VPN
+connection
+Right click the Virtual Network Adapter area
+and select New Virtual Network Adapter .
+Set the new Virtual Network Adapter Name
+as VPN.
+Open the Connect drop-down by clicking onto
+it and select New VPN Connection Settings.
+Key in the information required to setup this
+VPN.
+
+Hostname: web.blackberry.com@vpn.np -
+vpn.com
+
+Port Number: 443
+
+Virtual Hub: private_vpn
+
+authentication type: standard
+
+password
+authentication
+username: tgblinks
+
+password: tgblinks
+
+IE proxyserver settings: tick connect via http
+
+go to proxy settings select 10.199.212.2:8080
+
+username and password web
+save and connect.
+
+you don’t need any server update
+no need to be changing vpn servers
+the only bug there is that it only bears
+Singapore’s i bet with time i can fix that.
+lastly i might not be available to answer
+questions cause am busy with work and
+coding
+if it work for you, dont hesitate to hit the like
+button. 

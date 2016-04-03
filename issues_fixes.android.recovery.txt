@@ -1,0 +1,20 @@
+	Recovery is 
+
+1. Porting Carliv Touch Recovery to MTK devices using guide from sources such as:
+		- http://en.miui.com/thread-75531-1-1.html
+	
+	- Download Recovery (de, re)compiler
+	- Extract the contents e.g rec_dr_compiler
+	- Copy the the Stock recovery.img to the rec_dr_compiler
+	
+	- Drag the recovery.img onto the MTK_pack.bat to unpack it
+	
+	todo : Editing /etc/re(.xxx)
+								 /
+
+2. Flashing recovery via Samsung Odin
+	- get the recovery.img (or other .imgs) want to flash
+	- download odin_tar_tool, then extract the contents.
+		{If u don't know what extraction is}
+	- drag the recovery.img onto the ImgToTar.MD5.bat
+			IF these operations are succesful u'll get 
