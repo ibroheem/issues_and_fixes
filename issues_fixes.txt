@@ -52,36 +52,41 @@ Issues: On opening software-properties-kde/gtk, (this occurs on ubuntu clones es
 
 5. to_string() is not a member of std in MinGW
 	This could be caused by one of the following:
-		i.  Not Enabling The C++0x or C++11 Standard. Use the --std=c11 or --std=c0x flag or greater
+		i.  Not Enabling The C++0x or C++11 Standard. Use the --std=c++11 or --std=c++11 flag or greater
+		Solution: add the necessary flags --std=c++11, --std=c++11, --std=c++1y, --std=c++14, ...
+		
 		ii. using to_sting() without namespace declaration or specifier e.g:
 			declaration: using namespace std; or using std::to_sting;
+		Solution:
+			- add the necessary namespace declaration i.e 
+				using namespace std; Or using std
 		
-	  iii.Usually disabled by MinGW developers. Download this Patch: http://tehsausage.com/mingw-to-string
+	  	iii.Usually disabled by MinGW developers. Download this Patch: http://tehsausage.com/mingw-to-string
 			This patch enables the following list of C++11 functions and templates in the std namespace:
-stoi, stol, stoul, stoll, stof, stod, stold, to_string, to_wstring
+			stoi, stol, stoul, stoll, stof, stod, stold, to_string, to_wstring
 
-This assumes you are using the official MinGW distribution.
-If you are applying this patch to a version of MinGW GCC later than 4.7, you should examine and apply the patches rather than using the zip file.
-
-* Download mingw-to-string-gcc47.zip which contains three patched header files.
-(Original patches: wchar.h, stdio.h, os_defines.h)
-
-* Copy wchar.h and stdio.h from the include directory in the zip file to the following directory (overwrite):
-C:\mingw\include
-(replace C:\mingw\ with the appropriate directory)
-
-* Copy os_defines.h to the following directory (overwrite):
-C:\mingw\lib\gcc\mingw32\4.7.0\include\c++\mingw32\bits
-(replace C:\mingw\ with the appropriate directory)
-(replace 4.7.0 with the correct version number)
-
-Author: Julian Smythe
+		This assumes you are using the official MinGW distribution.
+		If you are applying this patch to a version of MinGW GCC later than 4.7, you should examine and apply the patches 				rather than using the zip file.
+		
+		* Download mingw-to-string-gcc47.zip which contains three patched header files.
+		(Original patches: wchar.h, stdio.h, os_defines.h)
+		
+		* Copy wchar.h and stdio.h from the include directory in the zip file to the following directory (overwrite):
+		C:\mingw\include
+		(replace C:\mingw\ with the appropriate directory)
+		
+		* Copy os_defines.h to the following directory (overwrite):
+		C:\mingw\lib\gcc\mingw32\4.7.0\include\c++\mingw32\bits
+		(replace C:\mingw\ with the appropriate directory)
+		(replace 4.7.0 with the correct version number)
+		
+		Author: Julian Smythe
 
 6. Making Symlinks on windows
 	There are 2 ways to give this privileges to users: 
 	1. Start gpedit.msc, go down to "Windows Settings"->"Security Settings"->"Local Policies"->"User Rights Assignment", then find "Create symbolic links" and add whatever users and groups you want.
 	
-	2. If you have cygwin running: "editrights -a SeCreateSymbolicLinkPrivilege -a user" should work." –  Fred Simon Jul 27 '11 at 0:28
+	2. If you have cygwin running: "editrights -a SeCreateSymbolicLinkPrivilege -a user" should work." â€“  Fred Simon Jul 27 '11 at 0:28
    	 
 	Example C:\Users\freds>mklink test-6.txt test.txt 
 	You do not have sufficient privilege to perform this operation. (And it works great as administrator...)
