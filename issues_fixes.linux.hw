@@ -1,0 +1,78 @@
+1. Modems not displaying/detected as such in their Respective Manager
+    e.g    Huwei E153 not displaying in Modem client
+    
+    i.  install usb_modeswitch
+    ii. # lsusb
+           Bus 002 Device 023: ID 12d1:14ac Huawei Technologies Co., Ltd.          
+    
+    edit /etc/modules add the line: 
+        usbserial vendor=0x12d1 product=0x14ac
+
+2. Adding MTP support to the Dolphin file manager by installing the MTP KIO:
+
+    sudo apt-add-repository ppa:philschmidt/ppa-kio-mtp-daily
+    sudo apt-get update
+    sudo apt-get install kio-mtp
+    
+3. Usb driver Configuration For MTK Devices
+    - 
+    
+4. Fix hibernation issue on Debian 8
+
+  Installed the following packages:
+  libsysfs2 (2.1.0+repack-4+b2)
+  libx86-1 (1.1+ds1-10.2)
+  sysfsutils (2.1.0+repack-4+b2)
+  uswsusp (1.0+20120915-6.1)
+  
+5. To check what drivers your wireless adapter is currently using, you may run the following command:
+
+    $ sudo lshw -C network
+    
+    lshw lists information on your hardware
+    -C network filters the output to only show the network class.
+    
+    Alternatively, you can use the command:
+
+    $ lspci -nnk | grep -A2 0280
+
+    lspci lists information on your PCI connected cards
+    -nnk instructs lspci to output more information about these cards (including the driver being used)
+    | pipes the output to the next command
+    grep 0280 filters the output to show lines containing 0280, which is the PCI class code for wireless PCI controllers in Ubuntu.
+    -A2 shows two more lines of information.
+
+
+ 6. mount: wrong fs type, bad option, bad superblock on /dev/loop0,
+       missing codepage or helper program, or other error
+
+       In some cases useful info is found in syslog - try
+       dmesg | tail or so.
+       
+       [http://www.linuxquestions.org/questions/linux-general-1/how-to-mount-img-file-882386/]
+	  The problem is that the .img files are not images of a partition, but of a whole disk. That means they start with a bootloader and a partition table. You have to find out the offset of the partition and mount it with the offset option of mount.
+	  If you do a
+	  Code:
+
+	  fdisk -l /path/to/image
+
+	  it will show you the block-size and the start-block of the partition. You can use that to calculate the offset.
+	  For example, I have an image of a bootable stick with a 4GB FAT32 partition. The output of the fdisk command is
+	  Code:
+
+	  Disk Stick.img: 3984 MB, 3984588800 bytes
+	  249 heads, 6 sectors/track, 5209 cylinders, total 7782400 sectors
+	  Units = sectors of 1 * 512 = 512 bytes
+	  Sector size (logical/physical): 512 bytes / 512 bytes
+	  I/O size (minimum/optimal): 512 bytes / 512 bytes
+	  Disk identifier: 0x0004bfaa
+
+	      Device Boot      Start         End      Blocks   Id  System
+	  Stick.img1   *         128     8015999     4007936    b  W95 FAT32
+
+So I have a block-size of 512 bytes and the start-block is 128. The offset is 512 * 128 = 65536.
+So the mount command would be
+Code:
+
+mount -o loop,offset=65536 Stick.img /mnt/tmp
+

@@ -1,0 +1,40 @@
+1.GIT
+    - Create Repo
+        echo '# devs' >> README.md
+        git init --bare devs.git
+        git add README.md
+        git commit -m "devs"
+        git remote add origin-devs https://github.com/user/devs.git
+        git push -u origin-devs master
+        
+        …or create a new repository on the command line
+
+        echo "# SchoolResultManagement" >> README.md
+        git init
+        git add README.md
+        git commit -m "first commit"
+        git remote add origin https://github.com/ibroheem/SchoolResultManagement.git
+        git push -u origin master
+        
+        …or push an existing repository from the command line
+
+        git remote add origin https://github.com/ibroheem/SchoolResultManagement.git
+        git push -u origin master
+        
+        …or import code from another repository
+        You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
+        
+		
+2. Deleting File(a), Directory(ies) in Repo
+  
+    Removes dir1 dir2 another-dir
+      git rm -r --cached dir1 dir2 another-dir
+    
+    Removes files1 file2 in current directory
+      git rm -r files1 file2
+       
+    Removes .h files in current directory
+      git rm -r *.h 
+    
+    git commit -m "Removed folder from repository"
+    git push origin master

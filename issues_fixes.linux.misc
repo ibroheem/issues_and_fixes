@@ -1,0 +1,110 @@
+1. intel_do_flush_locked failed Input/Output error
+    Causes problem with OpenGL
+    
+    Sol:
+	1 - LIBGL_ALWAYS_SOFTWARE=1 ./yourprogram
+	2 - export hiz=false
+	  export INTEL_HIZ=0
+	  export INTEL_SEPARATE_STENCIL=0
+
+2. Add a Library Path to init script
+
+    export LD_LIBRARY_PATH="/usr/lib/x86_64-linux-gnu:/home/ibroheem/usr/lib:/home/ibroheem/usr/local/lib:/home/ibroheem/usr/local/lib64:/usr/local/lib:/usr/lib64/:/usr/lib64/wx-2.8-stl:/lib64"
+
+    
+3. Cheat is an interactive cheat-sheet application released under GNU General Public License for Linux Command
+    line users which serves the purpose of showing, use cases of a Linux command with all the options and their short yet understandable function.
+    
+    # apt-get install python-pip 	(On Debian based Systems)
+    # yum install python-pip 	(On RedHat based Systems)
+    
+    # git clone https://github.com/chrisallenlane/cheat.git
+
+    # cd cheat
+    # python setup.py install
+    
+    Next, add the cheat autocompletion feature to enable command-line autocompletion for different shells.
+    To enable autocompletion, simply clone the ‘cheat.bash‘ script and copy the script to the appropriate path in your system.
+    
+    # wget https://github.com/chrisallenlane/cheat/raw/master/cheat/autocompletion/cheat.bash 
+    # cp cheat.bash /etc/bash_completion.d/
+    
+    Optionally, you can also enable syntax highlighting, if desired. To active syntax highlighting feature, add a CHEATCOLORS environment variable in your ‘.bashrc‘ file.
+    export CHEATCOLORS=true
+
+4. Speedtest-cli
+    $ sudo pip install speedtest-cli
+    
+    To upgrade speedtest-cli, at later stage, use:
+    $ sudo pip install speedtest-cli --upgrade
+    
+    Method II:
+        $ wget https://github.com/sivel/speedtest-cli/archive/master.zip
+        $ unzip master.zip 
+        
+        $ cd speedtest-cli-master/
+        $ chmod 755 speedtest_cli.py 
+
+5. XScreensaver not accepting correct password.
+    - [https://bugs.launchpad.net/ubuntu/+source/xscreensaver/+bug/992623]
+      change the group on /etc/shadow from 'root' to 'shadow'.
+      
+      # chown root:shadow /etc/shadow
+
+5b. Replace KDE screen saver with XScreensaver
+      [https://www.jwz.org/xscreensaver/man1.html]
+      It might be called /usr/libexec/kde4/kscreenlocker, or it might be called "kdesktop_lock" or "krunner_lock" or "kscreenlocker_greet", and it might be in /usr/lib/kde4/libexec/ or in /usr/kde/3.5/bin/ or even in /usr/bin/, depending on the distro and phase of the moon. Replace the contents of that file with these two lines:
+	#!/bin/sh
+	xscreensaver-command -lock
+	Make sure the file is executable (chmod a+x).
+
+6. How to Download MP3 Tracks from a YouTube Video Using YouTube-DL
+    
+    YouTube-DL is available for both CentOS/RHEL/Fedora and Ubuntu/Debian/ derivatives and it can be easily installed by using the following commands:
+      
+      $ sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+      $ sudo chmod a+rx /usr/local/bin/youtube-dl
+      
+      $ youtube-dl --help | grep extract-audio
+      
+      Examples:
+	- To download a video as mp3 file, you can use one of the following commands:-
+	  $ youtube-dl -x --audio-format mp3 https://www.youtube.com/watch?v=jwD4AEVBL6Q
+	  
+	- If you want to have a cover art for the mp3 file, you can add the --embed-thumbnail option:
+	  $ youtube-dl -x --embed-thumbnail --audio-format mp3 https://www.youtube.com/watch?v=jwD4AEVBL6Q
+	  
+	- Download Multiple MP3 Tracks from YouTube Playlist
+	  $ youtube-dl -x --audio-format mp3 --playlist-start 1 --playlist-end 5 https://www.youtube.com/playlist?list=PL9LUD5Kp855InMnKTaRy3LH3kTIYJyBzs
+	  
+7. Cloud Commander - Web File Manager to Control Linux File and Programs via Browser
+      [NodeJs App]
+      You can find a comprehensive usage guide and configuration information at https://cloudcmd.io/.
+      
+      $ npm install cloudcmd
+      
+      By default, Cloud Commander reads configurations in ~/.cloudcmd.json if no command options are set.
+      It uses port 8000, in case the port variables PORT or VCAP_APP_PORT don’t exist.
+
+      You can start using it by opening the URL in your browser:
+
+      http://SERVER_IP:8000
+
+8. bd – Quickly Go Back to a Parent Directory Instead of Typing “cd ../../..” Redundantly
+      $ wget --no-check-certificate -O /usr/bin/bd https://raw.github.com/vigneshwaranr/bd/master/bd
+      $ chmod +rx /usr/bin/bd
+      $ echo 'alias bd=". bd -si" >> ~/.bashrc
+      $ source ~/.bashrc
+      
+      $ sudo wget -O /etc/bash_completion.d/bd https://raw.github.com/vigneshwaranr/bd/master/bash_completion.d/bd
+      $ sudo source /etc/bash_completion.d/bd
+      
+      Usage:
+	Assuming your currently in the top directory in this path:
+
+	/media/aaronkilik/Data/Computer Science/Documents/Books/LEARN/Linux/Books/server $ 
+	$ bd Documents
+	$ bd Data
+
+      
+

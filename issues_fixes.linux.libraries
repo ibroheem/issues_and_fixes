@@ -1,0 +1,38 @@
+1. Find libraries a binary was linked against
+    a. ldd binary-exec
+        e.g ldd firefox
+    b. readelf -d binary | grep NEEDED
+    c. objdump -x binary | grep NEEDED
+
+2. configure: error: Package requirements (libffi >= 3.0.0) were not met: No package 'libffi' found. { or any other libraries needed by GTK+ or GTKMM src}
+    Cause:
+	the library's include, lib paths can't be found.
+	
+    Solution:
+	1.  - export PKG_CONFIG_PATH=path_to_pkg_config
+	    - export PKG_CONFIG_PATH=/home/user/usr/local/lib/pkgconfig
+	
+	2.  Set the specific library path, e.g
+	    - export LIBFFI_CFLAGS=-I/home/user/localroot/lib/libffi-3.0.11/include
+	      export LIBFFI_LIBS="-L/home/user/localroot/lib -lffi"
+
+3.  undefined reference to `inflateInit2_'
+    undefined reference to `zlibVersion'
+    undefined reference to `inflate'
+    undefined reference to `inflateInit_'
+    undefined reference to `inflateEnd'
+    
+    Solution:
+    1. the "-lz" flag is the one to be used. The ZLib is not linked thus not "inflate" functions.
+
+4. undefined reference to `XML_Expat Version'
+   undefined reference to `XML_SetUserData'
+   
+   Solution:
+   1. link with expat "-lexpat"
+
+5. undefined reference to `forkpty'
+   undefined reference to `openpty'
+   
+   Solution:
+   1. link with util "-lutil"

@@ -1,0 +1,40 @@
+1. /hello_droid/res/values-v14/styles.xml:8: error: Error retrieving parent for item: No resource found that matches the given name 'Theme.AppCompat.Light.DarkActionBar'.No resource found that matches the given name 'Theme.AppCompat.Light.DarkActionBar'
+    Problem: You are targeting a minimum SDK  
+
+2. Memory considerations when using a Virtual Machine
+
+    Using a Virtual Machine slows down the image building considerably. Besides that memory system is   often also an issue. Having insufficient RAM especially on the linking part of the image build may cause a number of issues that are difficult to troubleshoot. In these cases it’s good to take a look at the resource monitor to see if indeed the RAM was depleted.
+One way to make up for the limited RAM is using a bigger swap. Google recommends at least 16GB of RAM/swap so it’s not uncommon to create a 10GB swap when working in VM, to do this please use the following commands.
+ 
+    $ sudo fallocate -l 10g /mnt/10GB.swap
+    $ sudo chmod 600 /mnt/10GB.swap
+    $ sudo mkswap /mnt/10GB.swap
+    $ sudo swapon /mnt/10GB.swap
+ 
+    This will helps with the memory requirements but won’t speed up the build process. Building time with VM, as previously stated, will take several hours or even a couple of days depending on computing power.
+
+3. bash: build/envsetup.sh: line 1: syntax error near unexpected token $'{\r''
+    'ash: build/envsetup.sh: line 1:function hmm() {
+    
+    Problem: MS WIndows was involved creating file that is now being used in Linux environment. (\r)..
+    Solution: dos2unix file1 file2 file3 file.... filen to convert/fix them all at once
+
+4. Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/share/java/jayatanaag.jar
+    Solution: 
+        1. remove jaytana
+        2. You can disable jayatana just for the current shell session or in .bashrc...etc by unsetting JAVA_TOOL_OPTIONS :
+           unset JAVA_TOOL_OPTIONS # Unix
+           set JAVA_TOOL_OPTIONS=  # Window OS, if it exists
+           
+5. Eclipse Closing in Kde on Project Creation Launch
+    This is a bug in oxygen theme of Some  Ubuntu Versions
+    1. edit /usr/share/themes/oxygen-gtk/gtk-2.0/gtkrc
+       GtkComboBox::appears-as-list = 1 to GtkComboBox::appears-as-list = 0 
+    
+    2. The gtk2-engines-oxygen solves this in older Ubuntu Releases such as Vivid Vervet 15.04
+
+6. Compiling C/C++ libraries using NDK-GCC
+Include Folders:
+  ./android-ndk-r10d/platforms/android-21/arch-arm/usr/include/
+      # android-21 is the platform
+			

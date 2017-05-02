@@ -1,0 +1,9 @@
+1. Can't install Kali Linux from USB, fails to find CD-ROM drive
+    Create the directory cdrom directly on the root of the file system:
+
+    $ mkdir /cdrom
+
+    Note : If you got problems making the directory /cdrom, disable the CD-rom player in BIOS or disconnect the cable
+    Mount the USB as if it is a CD-ROM:
+
+    $ mount -t vfat /dev/sdb1 /cdrom

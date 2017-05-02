@@ -1,0 +1,94 @@
+1.Remove Activation Notice Ultimate Addons for Visual Composer
+    Just add the below code to your themes functions.php file:
+
+        define('BSF_PRODUCTS_NOTICES', false);
+
+    If you haven’t already, you’ll probably want to add this bit of code to your themes functions.php 
+    in order to disable the activation notice for Visual Composer itself:
+        
+        vc_set_as_theme( $disable_updater = true );
+        
+		
+2. Edit “thank you for creating with Wordpress”
+    - You can add this code to your functions.php file (in your theme): 
+        function wpse_edit_footer() {
+            add_filter( 'admin_footer_text', 'wpse_edit_text', 11 );
+        }
+
+        function wpse_edit_text($content) {
+            return "New Footer Text";
+        }
+
+        add_action( 'admin_init', 'wpse_edit_footer' );
+        
+     [http://wordpress.stackexchange.com/questions/46459/edit-thank-you-for-creating-with-wordpress-in-version-3-3-1]
+     
+    -  Use:
+        /**
+        * Change/Disable the footer text line
+        * @return void
+        */
+        function wpse_remove_footer()
+        {
+            add_filter( 'admin_footer_text',    '__return_false', 11 );
+            add_filter( 'update_footer',        '__return_false', 11 );
+        }
+        add_action( 'admin_init', 'wpse_remove_footer' );
+        In case you want to change it:
+
+        add_action( 'admin_init', function()
+        {
+            add_filter( 'admin_footer_text', function() {
+                echo "This is a custom admin footer text";
+            }, 11 );
+            add_filter( 'update_footer', function() {
+                echo "This is a custom footer update text";
+            }, 11 );
+        } );
+
+3. How to Remove WordPress Logo From Admin Bar
+    paste this code (preferably) into the function.php file of your theme: 
+        add_action('admin_bar_menu', 'remove_wp_logo', 999);
+            function remove_wp_logo( $wp_admin_bar ) {
+            $wp_admin_bar->remove_node('wp-logo');
+        }
+
+4. add_action( 'admin_init', function()
+{
+    add_filter( 'admin_footer_text', function() {
+        echo "Noor Takaful Plc v1.0";
+    }, 11 );
+    add_filter( 'update_footer', function() {
+        echo "";
+    }, 11 );
+} );
+    // Remove Admin Bar
+        add_action('admin_bar_menu', 'remove_wp_logo', 999);
+        function remove_wp_logo( $wp_admin_bar ) {
+        $wp_admin_bar->remove_node('wp-logo');
+        }
+        
+    //Remove Plugins update notiifications
+        remove_action('load-update-core.php','wp_update_plugins');
+        add_filter('pre_site_transient_update_plugins','__return_null');
+
+    //Remove wordpress core notification nag
+    add_action('after_setup_theme','remove_core_updates');
+    function remove_core_updates()
+    {
+        if(! current_user_can('update_core')){return;}
+        add_action('init', create_function('$a',"remove_action( 'init', 'wp_version_check' );"),2);
+        add_filt__return_null');er('pre_option_update_core','__return_null');
+        add_filter('pre_site_transient_update_core','
+    }
+    
+    // Remove all  Nags
+    /// Overriding this func caused Error 500
+        /*function remove_core_updates(){
+        //global $wp_version;
+        //return (object) array('last_checked'=> time(),'version_checked'=> $wp_version,);
+        }*/
+        add_filter('pre_site_transient_update_core','remove_core_updates');
+        add_filter('pre_site_transient_update_plugins','remove_core_updates');
+        add_filter('pre_site_transient_update_themes','remove_core_updates');
+

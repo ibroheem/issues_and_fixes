@@ -1,0 +1,76 @@
+1. Vagrant initialization error
+  Bringing machine 'default' up with 'virtualbox' provider...
+  ==> default: Box 'hashicorp/precise32' could not be found. Attempting to find and install...
+      default: Box Provider: virtualbox
+      default: Box Version: >= 0
+  The box 'hashicorp/precise32' could not be found or
+  could not be accessed in the remote catalog. If this is a private
+  box on Vagrant Cloud, please verify you're logged in via
+  `vagrant login`. Also, please double-check the name. The expanded
+  URL and error message are shown below:
+
+  URL: ["https://vagrantcloud.com/hashicorp/precise32"]
+  Error: 
+    
+  Solution:
+    - Check for correct curl installation: installed and working
+
+2. a. 
+
+    b. warning: /service/run/: unable to open supervise/ok: file does not exist
+	  Problem: Runsv is not running
+	    - runsv /service/run/ &
+
+3. Setting up Snorby
+    a. Install Deps
+	$ apt-get install imagemagick libmagickwand-dev wkhtmltopdf  [NOT NEEDED, Bloats a server installation with unnecessaries]
+	$ apt-get install gcc g++ build-essential libssl-dev libreadline-gplv2-dev zlib1g-dev linux-headers-generic libsqlite3-dev libxslt1-dev libxml2-dev libmysqlclient-dev libmysql++-dev
+	    - mariadb-client-10.1 libmariadbclient-dev might/should be used in newer installations, e.g in Debian
+	    - postgresql-server-dev-9.6 was required when running: $ bundle install
+	
+    b. Download snorby source files:
+
+	$ cd /var/www/
+	$ git clone http://github.com/Snorby/snorby.git
+
+    c. Then edit database information and change the password to access your mysql server:
+	$ nano /var/www/snorby/config/database.yml
+
+    d. [Iff wkhtmktopdf, imagemagick installed] Edit the snorby configuration file: /var/www/snorby/config/snorby_config.yml and change the path of the wkhtmktopdf script:
+	$ sed -i s/"\/usr\/local\/bin\/wkhtmltopdf"/"\/usr\/bin\/wkhtmltopdf"/g /var/www/snorby/config/snorby_config.yml
+
+    e. Install all required dependencies as specified in Gemfile:
+	$ bundle install --deployment
+	
+    f.	Install rake
+	$ sudo gem install rake or sudo apt-get install rake
+	$ rake snorby:setup
+	
+   g.	Passenger Integration Wtih NGINX, Apache
+	  [Prerequisite]
+	  METHOD 1
+	    $ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7
+	    $ sudo nano /etc/apt/sources.list.d/passenger.list
+		$sudo chown root: /etc/apt/sources.list.d/passenger.list
+		$sudo chmod 600 /etc/apt/sources.list.d/passenger.list
+	    $ deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main
+	    
+	  METHOD II
+	      sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+	      sudo apt-get install -y apt-transport-https ca-certificates
+	      
+	      sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger jessie main > /etc/apt/sources.list.d/passenger.list'
+	      sudo apt-get update
+	      sudo apt-get install -y nginx-extras passenger
+	  
+	    Also Available from default Debian repository
+	    
+	    $ sudo apt install passenger 
+	    OR
+	    $ sudo gem install passenger
+   
+   h.
+   i.
+   j.
+   k.
+   l.

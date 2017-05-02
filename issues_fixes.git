@@ -1,0 +1,33 @@
+1. Create a repo on github.
+    - Assuming: project1
+    - Assuming url: https://github.com/seboagwu/project1
+    - Do not initialize with the README file.
+    
+1. On your local machine, go to the directory you want to upload.
+      
+      a. Assuming you have c:/devs/project1 directory, containing:
+	- script1.js
+	- index.html
+	- README.md
+      
+     b. initialize a local repo on your machine
+	  $ git init
+      
+     c. Add the destination remote Url
+	  $ git remote add origin -m master link-to-the-repo
+	      For example: 
+		$ git remote add origin -m master https://github.com/seboagwu/project1
+      
+     e. Verifies the new remote URL
+	  $ git remove -v
+	  
+NOTE: Only do 1(f) if you've created/initialized a README or (any other file) on github, the do below, If NOT omit the below command.
+	  But entering it deosn't Hurt!
+	  
+      f. Download files from the master repository (e.g: https://github.com/seboagwu/project1).
+	  This makes sure all files in local and remote repository are merged.
+	  $ git pull origin master
+      
+      g. Upload/Push to the remote repository
+	  $ git push origin master
+      

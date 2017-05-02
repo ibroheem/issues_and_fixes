@@ -1,0 +1,8 @@
+1 . 
+In a domain environment, you can use Active Directory-based Group Policy to apply the security configuration you want to a particular set of computers. You can also configure this setting on a per-computer basis by using local security policy. To configure a homegroup or workgroup computer to use the Logon screen rather than the Welcome screen, use the Group Policy Object Editor, which is an MMC snap-in. You can add this snap-in to an empty console and configure a computer to use the Logon screen by following these steps:
+1. Click Start, type gpedit.msc, and then press Enter. This opens the Local Group Policy Editor with the top-level Local Group Policy object open for editing.
+2. In the editor, expand Local Computer Policy, Computer Configuration, Administrative Templates, System, Logon.
+3. Double-click Always Use Classic Logon.
+4. Select Enabled, and then click OK.
+
+In a domain, by default users are required to press Ctrl+Alt+Del to access the Log On To Windows dialog box. You can eliminate this requirement, but it is a poor security practice. To do so, in the Local Security Policy tool, expand Local Policies\Security Options, and then double-click Interactive Logon: Do Not Require Ctrl+Alt+Del. Click Enabled, and then click OK. But, we do not advise disabling this option. 

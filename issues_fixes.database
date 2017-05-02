@@ -1,0 +1,38 @@
+1. Mysql Password reset.
+    # mysqladmin -u user oldpassword newpass
+    
+    # mysqladmin -u root password NEWPASSWORD
+
+2. Import mysql db from shell
+    - # mysql -u username -p database_name < file.sql
+    
+    - Regarding the time taken for importing huge files: most importantly, 
+      it takes more time because the default setting of MySQL is autocommit = true.
+      You must set that off before importing your file and then check how import works like a gem.
+      You just need to do the following thing:
+
+      mysql> use db_name;
+      mysql> SET autocommit=0 ; source the_sql_file.sql ; COMMIT ;
+
+3. Create new user in MySQL
+    - # mysql -u root -p
+      mysql> GRANT ALL PRIVILEGES ON dbTest.* To 'user'@'hostname' IDENTIFIED BY 'password';
+      GRANT ALL PRIVILEGES ON student_portal.* To 'kigos'@'localhost' IDENTIFIED BY '0000';
+      
+    - # mysql -u root -p -e "grant all privileges on dbTest.* to `{user}`@`{host}` identified by '{long-password}'; flush privileges;"
+
+4. ISPConfig MySQL error during installation
+		- Temporary
+				SET GLOBAL sql_mode = 'NO_ENGINE_SUBSTITUTION';
+				SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION';
+		
+		-	You should use NO_ENGINE_SUBSTITUTION. Add sql-mode="NO_ENGINE_SUBSTITUTION" to the mysqld-section in your mysql-config and 	
+			restart mysqld afterwards
+
+				# apt-get install php5-mysqlnd 
+		
+5. 
+
+    CREATE USER 'phpmyadmin'@'localhost' IDENTIFIED BY '#FFFFFF@phpmyadmin';
+    GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' WITH GRANT OPTION;
+    FLUSH PRIVILEGES;

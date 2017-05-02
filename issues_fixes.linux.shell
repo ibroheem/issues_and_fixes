@@ -20,4 +20,33 @@
     
 	-To make sure things work before you cut the command loose, I'd suggest using another of rsync's switches, --dry-run. Let's add another -v too so rsync's output is more verbose.
 	    rsync -avz --dry-run --update --existing src/ dst
+
+3. Bash completion
+    [http://askubuntu.com/questions/33440/tab-completion-doesnt-work-for-commands]
     
+    i. sudo apt-get install bash-completion
+    
+    try if above does not work:
+    
+    if ! shopt -oq posix; then
+     if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+      elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+      fi
+    fi
+    
+4. Print directories, files in tree-like manner.
+    
+    [http://askubuntu.com/questions/431251/how-to-print-the-directory-tree-in-terminal]
+    
+    - sudo apt-get install tree
+        $ tree
+    
+    - $ find . -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"
+
+        This command will search recursively for directories inside the parent directory and then draw the tree of the founded directories.
+
+        You may also try the following to include all of the files as well.
+
+        $ find | sed 's|[^/]*/|- |g'
