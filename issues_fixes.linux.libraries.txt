@@ -1,7 +1,0 @@
-1. Find libraries a binary was linked against
-    a. ldd binary-exec
-        e.g ldd firefox
-    b. readelf -d binary | grep NEEDED
-    c. objdump -x binary | grep NEEDED
-
-2. 

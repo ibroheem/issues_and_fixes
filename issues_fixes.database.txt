@@ -1,2 +1,0 @@
-1. Mysql Password reset.
-    $ mysqladmin -u user oldpassword newpass
