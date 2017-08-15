@@ -36,3 +36,17 @@
    
    Solution:
    1. link with util "-lutil"
+
+6 debian - curl: (35) gnutls_handshake() failed: Public key signature verification has failed
+
+    After downgrading to curl 7.38.0, I also had to downgrade:
+
+    $ sudo apt-mark hold libcurl3-gnutls
+    $ sudo apt-get install libcurl3-gnutls=7.38.0-4+deb8u4
+
+    Then the error went away. I'm on debian jessie.
+    
+    7.38.0-4+deb8u4 might've changed to 7.38.0-4+deb8u5 etc
+
+7. configure: error: Could not find a version of the library!
+    configure --with-boost-libdir=/usr/lib/    
