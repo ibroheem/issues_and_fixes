@@ -49,4 +49,12 @@
     7.38.0-4+deb8u4 might've changed to 7.38.0-4+deb8u5 etc
 
 7. configure: error: Could not find a version of the library!
-    configure --with-boost-libdir=/usr/lib/    
+    Solution: ./configure --with-boost-libdir=/usr/lib/
+    
+     /usr/lib can be changed to the lib where boos is installed
+
+8. ./configure: line 17173: PKG_PROG_PKG_CONFIG: command not found
+   ./configure: line 17175: syntax error near unexpected token `GFLAGS,'
+   ./configure: line 17175: `   PKG_CHECK_MODULES(GFLAGS, gflags,'
+   
+    Solution: install pkg-config not pkgconf
